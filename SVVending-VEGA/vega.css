@@ -1,0 +1,13 @@
+.vega-module-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.vega-module{position:relative;display:flex;flex-direction:column;align-items:flex-start;gap:6px;min-height:106px;padding:15px 40px 15px 15px;border:1px solid var(--line);border-radius:15px;background:#fff;color:var(--ink);text-align:left;box-shadow:0 3px 10px #10274705}
+.vega-module strong{font-size:14px}
+.vega-module span{font-size:12px;line-height:1.4;color:var(--muted);font-weight:450}
+.vega-module b{position:absolute;right:14px;top:50%;transform:translateY(-50%);font-size:24px;color:var(--blue)}
+.vega-module:hover{border-color:#9cc5f5;background:#fafdff}
+.vega-module:focus-visible{outline:3px solid #9bd1ff;outline-offset:2px}
+.vega-note{margin-top:18px}
+.vega-form{margin-top:14px}
+.vega-form .two{grid-template-columns:repeat(2,minmax(0,1fr))}
+.vega-form textarea{width:100%;padding:11px;border:1px solid #ccd7e5;border-radius:10px;background:white;color:var(--ink);font:inherit;resize:vertical}
+.vega-record{border-left:4px solid var(--blue)}
+@media(max-width:480px){.vega-module-grid{grid-template-columns:1fr}.vega-module{min-height:82px}.vega-form .two{grid-template-columns:1fr}}

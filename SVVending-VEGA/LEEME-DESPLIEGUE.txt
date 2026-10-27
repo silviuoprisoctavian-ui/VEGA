@@ -1,0 +1,28 @@
+SV VENDING VEGA — APLICACIÓN INDEPENDIENTE
+
+Esta carpeta contiene una aplicación PWA separada de SV Vending Service. Tiene nombre e instalación propios, almacenamiento local distinto, otro token de sincronización y una API/tabla PostgreSQL independientes. Este paquete no sustituye ni modifica la aplicación actual.
+
+FUNCIONES INCLUIDAS
+- Mantiene el escáner, clientes, máquinas, catálogo, almacén, facturas, movimientos, ventas, comisiones e informes de la versión SV Vending más reciente.
+- Mantiene las bolsas de recaudación, la contabilidad por mes con descarga Excel, los recuentos reales de stock y el historial de ajustes.
+- Conserva el borrador de reposición y la pantalla activa mientras la reposición está abierta.
+- Añade un Centro VEGA para rutas y visitas, pedidos, asistencia técnica, telemetría, planogramas, calidad, contratos, CRM, empleados, flota, preparación/montaje, reclamaciones y documentos.
+- Los registros nuevos se guardan localmente y se incluyen en la sincronización independiente de VEGA.
+- Los módulos de almacén, máquinas, recaudación, compras, informes, clientes, facturas y comisiones usan las secciones existentes de la aplicación.
+
+INSTALACIÓN EN UNA DIRECCIÓN SEPARADA
+1. Descomprime `SVVending-VEGA-Independiente.zip` y crea un repositorio privado nuevo con el contenido de la carpeta `SVVending-VEGA` en su raíz.
+2. En Render crea un Web Service nuevo conectado a ese repositorio. No conectes el servicio existente de SV Vending a este repositorio ni sobrescribas su servicio.
+3. Configura `npm install` como Build Command y `npm start` como Start Command.
+4. Configura `DATABASE_URL` con una base PostgreSQL para esta aplicación. También puede compartir una instancia PostgreSQL, porque la tabla de estado tiene otro nombre, pero se recomienda una base aparte para aislar copias y datos.
+5. Añade `VEGA_SYNC_TOKEN` con un valor aleatorio largo y privado. No reutilices ni publiques el token de la aplicación actual. `OPENAI_API_KEY` es opcional y solo se necesita para el análisis de facturas.
+6. Espera a que termine el despliegue y abre `/api/health` en la nueva dirección HTTPS. Debe indicar `ok: true`, `databaseConfigured: true` y `syncConfigured: true`.
+7. Abre la nueva dirección HTTPS en el móvil y usa el menú del navegador → «Instalar aplicación» o «Añadir a pantalla de inicio». Se instala como una PWA distinta.
+
+DATOS DE LA APLICACIÓN ACTUAL
+La nueva app no importa datos automáticamente: usa otra dirección y un almacén separado. Si quieres partir de los datos actuales, primero descarga una copia JSON desde Ajustes en SV Vending Service y, tras instalar la nueva app, impórtala desde Ajustes → «Restaurar copia». Conserva una copia original antes de importarla.
+
+CONEXIONES EXTERNAS
+La telemetría se puede alimentar con los informes Frekuent admitidos o con registros manuales. GPS en directo, telemetría directa de cada máquina, ERP/contabilidad externos, envío de invitaciones por correo y permisos de acceso efectivos requieren credenciales, protocolos o servicios de esos proveedores. El directorio de empleados permite anotar funciones y zonas, pero no sustituye un sistema de inicio de sesión multiusuario.
+
+Los datos permanecen guardados en el teléfono y, cuando se configura la conexión, se sincronizan con la tabla PostgreSQL `sv_vega_app_state` mediante `/api/vega-state`. La app actual sigue usando su propia ruta, token y tabla.

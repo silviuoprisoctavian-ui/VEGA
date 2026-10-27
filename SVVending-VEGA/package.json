@@ -1,0 +1,17 @@
+{
+  "name": "sv-vending-vega",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "multer": "^2.0.2",
+    "openai": "^5.12.2",
+    "pg": "^8.13.1"
+  },
+  "description": "Aplicación independiente de gestión vending SV Vending VEGA"
+}
